@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guesas by Leiner</title>
+
+    <style>
+        @font-face {
+            font-family: 'DxLactos';
+            src: url("Recursos/DxLactosFreeFont/DxLactos-Regular-free-personal-use.otf") format("opentype");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            font-family: 'DxLactos', sans-serif;
+        }
+        
+        .logo {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+
+        }
+
+        .Portada {
+        position: relative;
+        height: 100vh;
+        background-color: #fec7d7;
+        color: #6c151a;
+        font-size: 10em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column; /* para que el h1 quede centrado */
+        }
+
+        header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 120px;
+        }
+
+        /* Logo centrado horizontalmente */
+        .logo {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+
+        }
+
+        /* Contenedor del menu en la esquina superior derecha */
+        .menu {
+        position: absolute;
+        right: 20px;   /* separación desde el borde derecho */
+        top: 20px;     /* separación desde el borde superior */
+        display: block;
+        z-index: 10;
+        }
+
+        /* Botón real: tamaño limitado para evitar área de clic grande */
+        .menu-btn {
+        display: inline-block;
+        width: 45px;       /* tamaño del área visible del botón */
+        height: 35px;
+        position: relative;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Input ocupa exactamente el tamaño del botón */
+        .menu-btn input {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 5;
+        left: 0;
+        top: 0;
+        }
+
+        /* Barras del icono hamburguesa centradas dentro del botón */
+        .bar {
+        display: block;
+        width: 30px;
+        height: 3px;
+        margin: 6px auto;
+        border-radius: 25px;
+        transition: all 0.3s cubic-bezier(0.30, -1.10, 0.80, 2.00);
+        background-color: #404040;
+        }
+
+        /* Animaciones al activar */
+        .menu-btn input:checked ~ .bar:nth-child(2) {
+        transform: translateY(9.5px) rotate(45deg);
+        }
+        .menu-btn input:checked ~ .bar:nth-child(3) {
+        opacity: 0;
+        }
+        .menu-btn input:checked ~ .bar:nth-child(4) {
+        transform: translateY(-8px) rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="Portada">
+        <header>
+            <div class="logo">
+            <img src="Recursos/LogoGuesas.png" alt="Logo de Guesas" width="150" height="150">
+            </div>
+
+            <div class="menu">
+            <label class="menu-btn">
+                <input type="checkbox" >
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </label>
+            </div>
+        </header>
+
+        <h1>Empapa</h1>
+        <img src="../Proyecto/Recursos/Guesas/ExtremeColesterol.png" alt="ExtremeColesterol">
+
+    </div>
+</body>
+</html>
