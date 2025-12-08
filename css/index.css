@@ -97,6 +97,7 @@
     margin: 0;
 }
 
+/* Breakpoints */
 /* PC */
 @media (max-width: 1024px) {
     .comida-item {
@@ -122,6 +123,22 @@
 
     .categoria-titulo {
         font-size: 50px;
+    }
+
+    .logo {
+    width: 120px;
+    height: 80px;
+    }
+
+    .columna-lateral {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .lado-izquierdo, .lado-derecho {
+        padding: 0;
     }
 }
 
