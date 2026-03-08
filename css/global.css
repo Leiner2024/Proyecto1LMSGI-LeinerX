@@ -187,7 +187,9 @@ footer {
 
 /* Menu Overlay */
 .menu-overlay {
-    display: table;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     position: fixed;
     top: 0;
@@ -196,25 +198,20 @@ footer {
     height: 100%;
     background-color: var(--Blanco);
     z-index: 21;
-    opacity: 0; /* Leiner, esto mantiene oculto el overlay */
+    opacity: 0; 
+    visibility: hidden;
     transition: all 0.2s ease-in-out;
 }
-
+ /* */
 .menu-overlay.activo {
     opacity: 1;
     visibility: visible;
 }
 
-.menu-nav {
-    display: table-cell;
-    vertical-align: middle;
-}
-
 .menu-nav ul {
     list-style: none;
     padding: 0;
-    display: inline-block;
-    margin: 0 auto;
+    margin: 0;
 }
 
 .menu-nav li {
@@ -229,7 +226,6 @@ footer {
     font-family: sans-serif;
 }
 
-/* Animaciones del menú */
 .menu-btn input:checked ~ .bar:nth-child(2) {
     transform: translateY(9.5px) rotate(45deg);
 }
@@ -239,3 +235,4 @@ footer {
 .menu-btn input:checked ~ .bar:nth-child(4) {
     transform: translateY(-8px) rotate(-45deg);
 }
+ /* */
