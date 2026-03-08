@@ -14,7 +14,7 @@
                 <a href="index.html"><img src="Recursos/LogoGuesas.png" alt="Logo de Guesas"></a>
             </div>
             <div class="menu">
-                <label class="menu-btn">
+                <label class="menu-btn" id="menu-toggle">
                     <input type="checkbox" >
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -26,7 +26,7 @@
 
     <div class="Portada">
         <h1>Empapa</h1>
-        <img src="Recursos/Guesas/ExtremeColesterol.png" alt="ExtremeColesterol" class="portada-img">
+        <img src="Recursos/Guesas/Extreme/ExtremeColesterol.png" alt="ExtremeColesterol" class="portada-img">
         <h1 style="z-index: 3; color: transparent; -webkit-text-stroke: 4px #6c151a; pointer-events: none;">Empapa</h1>
     </div>
 
@@ -34,33 +34,33 @@
         <h2 class="categoria-titulo">Vacuno</h2>
         <div class="grid-comidas">
     
-            <div class="comida-item">
-                <img src="Recursos/Guesas/CheeseBacon.png" alt="Junior"> 
+            <div class="comida-item" data-categoria="junior" style="cursor: pointer;">
+                <img src="Recursos/Guesas/Junior/CheeseBacon.png" alt="Junior"> 
                 <h3>Junior</h3>
             </div>
-            <div class="comida-item">
-                <img src="Recursos/Guesas/ExtremeColesterol.png" alt="Extreme"> 
+            <div class="comida-item" data-categoria="extreme" style="cursor: pointer;">
+                <img src="Recursos/Guesas/Extreme/ExtremeColesterol.png" alt="Extreme"> 
                 <h3>Extreme</h3>
             </div>
-            <div class="comida-item">
-                <img src="Recursos/Guesas/LaGolosa.png" alt="Veggi"> 
+            <div class="comida-item" data-categoria="veggi" style="cursor: pointer;">
+                <img src="Recursos/Guesas/Junior/LaGolosa.png" alt="Veggi"> 
                 <h3>Veggi</h3>
             </div>
-             <div class="comida-item">
-                <img src="Recursos/Guesas/DoubleFloor.png" alt="Extras"> 
-                <h3>Extras</h3>
+             <div class="comida-item" data-categoria="extras_vacuno" style="cursor: pointer;">
+                <img src="Recursos/Guesas/Complementos/Chicken-Fingers-Eggs.png" alt="Complementos morbidos"> 
+                <h3>Complementos morbidos</h3>
             </div>
         </div>
         
         <h2 class="categoria-titulo" style="margin-top: 4rem;">Pollo</h2>
          <div class="grid-comidas">
-            <div class="comida-item">
-                <img src="Recursos/Guesas/PolloKrok.png" alt="Krok">
+            <div class="comida-item" data-categoria="krok" style="cursor: pointer;">
+                <img src="Recursos/Guesas/Krok/PolloKrok.png" alt="Krok">
                 <h3>Krok</h3>
             </div>
-             <div class="comida-item">
-                <img src="Recursos/Guesas/Complementos.png" alt="Extras Pollo">
-                <h3>Extras</h3>
+             <div class="comida-item" data-categoria="extras_pollo" style="cursor: pointer;">
+                <img src="Recursos/Guesas/Complementos/FatWitch.png" alt="Postres">
+                <h3>Postres</h3>
             </div>
          </div>
     </section>
@@ -99,6 +99,17 @@
             </ul>
         </nav>
     </div>
+
+    <!-- Categories Overlays -->
+    <div class="modal-overlay" id="modal-menu">
+        <div class="modal-content">
+            <span class="close-modal" id="close-modal">&times;</span>
+            <h2 id="modal-title" class="categoria-titulo" style="font-size: 50px; margin-bottom: 10px;">Categoria</h2>
+            <div id="modal-grid" class="modal-grid">
+            </div>
+        </div>
+    </div>
+
     <script src="js/global.js"></script>
 </body>
 </html>
