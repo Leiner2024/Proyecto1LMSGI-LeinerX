@@ -12,7 +12,7 @@ checkbox.addEventListener('change', function() {
     }
 })
 
-/* */
+/* Prueba Leiner */
 const datosMenu = {
     junior: [
         { nombre: "Junior Basica", precio: "4.99", img: "Recursos/Guesas/Junior/CheeseBacon.png" },
@@ -110,4 +110,4 @@ modalMenu.addEventListener('click', function(e) {
         modalMenu.classList.remove('activo');
     }
 });
-/* */
+/* Prueba Leiner */
