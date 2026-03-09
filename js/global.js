@@ -46,11 +46,11 @@ const datosMenu = {
         {nombre: "Water Solan De Cabras", precio: "Free", img: "Recursos/Guesas/Complementos/WaterSolanDeCabras.png"}
     ],
     krok: [
-        {nombre: "Pollo Krok", precio: "6.49", img: "Recursos/Guesas/krok/PolloKrok.png"},
-        {nombre: "ChickenEgg", precio: "5.49", img: "Recursos/Guesas/krok/ChickenEgg.png"},
-        {nombre: "CrispyBurger", precio: "6.99", img: "Recursos/Guesas/krok/CrispyBurger.png"},
-        {nombre: "Kroker", precio: "5.99", img: "Recursos/Guesas/krok/Kroker.png"},
-        {nombre: "SpicyChicken", precio: "7.99", img: "Recursos/Guesas/krok/SpicyChicken.png"}
+        {nombre: "Pollo Krok", precio: "6.49", img: "Recursos/Guesas/Krok/PolloKrok.png"},
+        {nombre: "ChickenEgg", precio: "5.49", img: "Recursos/Guesas/Krok/ChickenEgg.png"},
+        {nombre: "CrispyBurger", precio: "6.99", img: "Recursos/Guesas/Krok/CrispyBurger.png"},
+        {nombre: "Kroker", precio: "5.99", img: "Recursos/Guesas/Krok/Kroker.png"},
+        {nombre: "SpicyChicken", precio: "7.99", img: "Recursos/Guesas/Krok/SpicyChicken.png"}
     ],
     extras_pollo: [
         {nombre: "FatWitch", precio: "4.99", img: "Recursos/Guesas/Complementos/FatWitch.png"},
@@ -110,4 +110,5 @@ modalMenu.addEventListener('click', function(e) {
         modalMenu.classList.remove('activo');
     }
 });
+
 /* Prueba Leiner */
