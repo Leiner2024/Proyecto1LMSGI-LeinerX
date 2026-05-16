@@ -381,6 +381,15 @@
         </main>
     </div>
 
+    <!-- Vista Legal -->
+    <div id="vista-legal" class="vista" style="display: none;">
+        <main class="container-main" style="padding-top: 150px; margin-bottom: 5rem;">
+            <h2 id="titulo-legal" class="categoria-titulo">Legal</h2>
+            <div id="contenido-legal" style="text-align: left; background-color: var(--Blanco); padding: 30px; border-radius: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); color: var(--GrisFosc); font-family: sans-serif; line-height: 1.6; font-size: 1.2rem;">
+            </div>
+        </main>
+    </div>
+    
     <footer>
         <div class="footer-top">
             <div class="side lado-left">
@@ -391,10 +400,10 @@
 
             <div class="side lado-right">
                 <div class="legal">
-                    <a href="#"><p>Terminos y Condiciones</p></a>
-                    <a href="#"><p>Politica de Privacidad</p></a>
-                    <a href="#"><p>Contacto</p></a>
-                    <a href="#"><p>Aviso Legal</p></a>
+                    <span class="nav-link" data-target="legal" data-doc="terminos" style="display: block; margin-bottom: 10px; font-weight: bold; cursor: pointer;">Terminos y Condiciones</span>
+                    <span class="nav-link" data-target="legal" data-doc="privacidad" style="display: block; margin-bottom: 10px; font-weight: bold; cursor: pointer;">Politica de Privacidad</span>
+                    <span class="nav-link" data-target="legal" data-doc="contacto" style="display: block; margin-bottom: 10px; font-weight: bold; cursor: pointer;">Contacto</span>
+                    <span class="nav-link" data-target="legal" data-doc="aviso" style="display: block; margin-bottom: 10px; font-weight: bold; cursor: pointer;">Aviso Legal</span>
                 </div>
             </div>
         </div>
