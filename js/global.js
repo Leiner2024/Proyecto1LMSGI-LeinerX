@@ -165,7 +165,7 @@ linksNavegacion.forEach(link => {
 
 // Local Storage de info del restaurante
 const infoRestaurante = {
-    diasCerrado: [1],
+    diasCerrado: [1], // Lunes cerrado
     horaApertura: "13:00",
     horaCierre: "23:30",
     maxPersonas: 20
@@ -313,3 +313,24 @@ if (formReserva) {
         });
     });
 }
+
+// Textos legales
+const textosLegales = {
+    terminos: "Estos son los terminos y condiciones de uso de Guesas. Al usar nuestra web aceptas nuestra normativa interna.",
+    privacidad: "Protegemos tus datos de navegacion y los formularios enviados. Solo los usamos para gestionar tus reservas.",
+    contacto: "Puedes encontrarnos en nuestros restaurantes locales o llamando al numero 900 123 456 para cualquier consulta.",
+    aviso: "Guesas España es un proyecto academico. Todos los derechos reservados."
+};
+
+const linksLegales = document.querySelectorAll('.legal .nav-link');
+const tituloLegal = document.getElementById('titulo-legal');
+const contenidoLegal = document.getElementById('contenido-legal');
+
+linksLegales.forEach(link => {
+    link.addEventListener('click', function() {
+        const tipo = this.getAttribute('data-doc');
+        tituloLegal.innerText = this.innerText;
+        contenidoLegal.innerText = textosLegales[tipo];
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+});
