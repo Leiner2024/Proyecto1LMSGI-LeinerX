@@ -1,3 +1,4 @@
+/* Boton guesa */
 const checkbox = document.querySelector('.menu-btn input')
 const menu = document.getElementById('menu-overlay')
 const body = document.body
@@ -6,13 +7,14 @@ checkbox.addEventListener('change', function() {
     if (this.checked) {
         menu.classList.add('activo')
         body.style.overflow = 'hidden'
-    } else {
+    }
+    else {
         menu.classList.remove('activo')
         body.style.overflow = 'auto'
     }
 })
 
-/* Prueba Leiner */
+/* Datos Menu */
 const datosMenu = {
     junior: [
         { nombre: "Junior Basica", precio: "4.99", img: "Recursos/Guesas/Junior/CheeseBacon.png" },
@@ -46,11 +48,11 @@ const datosMenu = {
         {nombre: "Water Solan De Cabras", precio: "Free", img: "Recursos/Guesas/Complementos/WaterSolanDeCabras.png"}
     ],
     krok: [
-        {nombre: "Pollo Krok", precio: "6.49", img: "Recursos/Guesas/Krok/PolloKrok.png"},
-        {nombre: "ChickenEgg", precio: "5.49", img: "Recursos/Guesas/Krok/ChickenEgg.png"},
-        {nombre: "CrispyBurger", precio: "6.99", img: "Recursos/Guesas/Krok/CrispyBurger.png"},
-        {nombre: "Kroker", precio: "5.99", img: "Recursos/Guesas/Krok/Kroker.png"},
-        {nombre: "SpicyChicken", precio: "7.99", img: "Recursos/Guesas/Krok/SpicyChicken.png"}
+        {nombre: "Pollo Krok", precio: "6.49", img: "Recursos/Guesas/krok/PolloKrok.png"},
+        {nombre: "ChickenEgg", precio: "5.49", img: "Recursos/Guesas/krok/ChickenEgg.png"},
+        {nombre: "CrispyBurger", precio: "6.99", img: "Recursos/Guesas/krok/CrispyBurger.png"},
+        {nombre: "Kroker", precio: "5.99", img: "Recursos/Guesas/krok/Kroker.png"},
+        {nombre: "SpicyChicken", precio: "7.99", img: "Recursos/Guesas/krok/SpicyChicken.png"}
     ],
     extras_pollo: [
         {nombre: "FatWitch", precio: "4.99", img: "Recursos/Guesas/Complementos/FatWitch.png"},
@@ -66,6 +68,7 @@ const datosMenu = {
     ]
 };
 
+/* Logica Menu */
 const modalMenu = document.getElementById('modal-menu');
 const closeModal = document.getElementById('close-modal');
 const modalTitle = document.getElementById('modal-title');
@@ -111,4 +114,182 @@ modalMenu.addEventListener('click', function(e) {
     }
 });
 
-/* Prueba Leiner */
+// updates
+// Navegacion entre vistas (index.html, carta.html, reservas.html)
+const linksNavegacion = document.querySelectorAll('.nav-link')
+const vistas = document.querySelectorAll('.vista')
+
+linksNavegacion.forEach(link => {
+    link.addEventListener('click', function() {
+        const target = this.getAttribute('data-target')
+        
+        vistas.forEach(vista => {
+            vista.style.display = 'none'
+            vista.classList.remove('activa')
+        })
+        
+        linksNavegacion.forEach(l => l.classList.remove('activa'))
+        
+        const vistaDestino = document.getElementById('vista-' + target)
+        if (vistaDestino) {
+            vistaDestino.style.display = 'block'
+            vistaDestino.classList.add('activa')
+        }
+        
+        this.classList.add('activa')
+        
+        menu.classList.remove('activo')
+        body.style.overflow = 'auto'
+        checkbox.checked = false
+    })
+})
+// Local Storage de info del restaurante
+const infoRestaurante = {
+    diasCerrado: [1],
+    horaApertura: "13:00",
+    horaCierre: "23:30",
+    maxPersonas: 20
+};
+
+if (!localStorage.getItem('infoGuesas')) {
+    localStorage.setItem('infoGuesas', JSON.stringify(infoRestaurante));
+}
+
+// Validacion Formulario Reservas
+const formReserva = document.getElementById('formulario-reserva');
+const resumenReserva = document.getElementById('resumen-reserva');
+
+const validarVacio = (valor) => valor.trim() !== '';
+const validarContacto = (valor) => /^[0-9]{9}$/.test(valor) || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+const validarFecha = (valor, diasCerrados) => {
+    if (!valor) return false;
+    const fechaElegida = new Date(valor);
+    const hoy = new Date();
+    hoy.setHours(0, 0, 0, 0);
+    if (fechaElegida < hoy) return false;
+    return !diasCerrados.includes(fechaElegida.getDay());
+};
+const validarHora = (valor, apertura, cierre) => {
+    if (!valor) return false;
+    return valor >= apertura && valor <= cierre;
+};
+const validarPersonas = (valor, maximo) => {
+    const num = parseInt(valor);
+    return num > 0 && num <= maximo;
+};
+
+const mostrarError = (input, spanId, mensaje, valido) => {
+    const span = document.getElementById(spanId);
+    if (!valido) {
+        span.textContent = mensaje;
+        input.classList.remove('campo-valido');
+        input.classList.add('campo-invalido');
+        setTimeout(() => input.classList.remove('campo-invalido'), 400);
+    } else {
+        span.textContent = '';
+        input.classList.remove('campo-invalido');
+        input.classList.add('campo-valido');
+    }
+    return valido;
+};
+
+if (formReserva) {
+    const inputs = formReserva.querySelectorAll('input');
+    const info = JSON.parse(localStorage.getItem('infoGuesas'));
+
+    inputs.forEach(input => {
+        input.addEventListener('input', () => {
+            validarCampo(input, info);
+        });
+    });
+
+    const validarCampo = (input, info) => {
+        let valido = true;
+        let msj = '';
+        
+        if (input.name === 'nombre') {
+            valido = validarVacio(input.value);
+            msj = 'El nombre es obligatorio.';
+        } else if (input.name === 'contacto') {
+            valido = validarContacto(input.value);
+            msj = 'Introduce un telefono de 9 cifras o un email valido.';
+        } else if (input.name === 'fecha') {
+            valido = validarFecha(input.value, info.diasCerrado);
+            msj = 'Fecha invalida o dia de cierre.';
+        } else if (input.name === 'hora') {
+            valido = validarHora(input.value, info.horaApertura, info.horaCierre);
+            msj = `El horario es de ${info.horaApertura} a ${info.horaCierre}.`;
+        } else if (input.name === 'personas') {
+            valido = validarPersonas(input.value, info.maxPersonas);
+            msj = `Debe ser entre 1 y ${info.maxPersonas} personas.`;
+        }
+        
+        return mostrarError(input, `error-${input.name}`, msj, valido);
+    };
+
+    formReserva.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            formReserva.dispatchEvent(new Event('submit'));
+        }
+    });
+
+    formReserva.addEventListener('submit', (e) => {
+        e.preventDefault();
+        let todoValido = true;
+        let primerError = null;
+
+        inputs.forEach(input => {
+            if (!validarCampo(input, info)) {
+                todoValido = false;
+                if (!primerError) primerError = input;
+            }
+        });
+
+        if (!todoValido) {
+            primerError.focus();
+            return;
+        }
+
+        const reservas = JSON.parse(localStorage.getItem('reservasGuesas')) || [];
+        const fechaVal = document.getElementById('campo-fecha').value;
+        const horaVal = document.getElementById('campo-hora').value;
+
+        const duplicada = reservas.some(r => r.fecha === fechaVal && r.hora === horaVal);
+
+        if (duplicada) {
+            mostrarError(document.getElementById('campo-hora'), 'error-hora', 'Ya hay una reserva a esa hora.', false);
+            return;
+        }
+
+        const nuevaReserva = {
+            nombre: document.getElementById('campo-nombre').value,
+            contacto: document.getElementById('campo-contacto').value,
+            fecha: fechaVal,
+            hora: horaVal,
+            personas: document.getElementById('campo-personas').value,
+            zona: document.getElementById('campo-zona').value
+        };
+
+        reservas.push(nuevaReserva);
+        localStorage.setItem('reservasGuesas', JSON.stringify(reservas));
+
+        formReserva.style.display = 'none';
+        resumenReserva.style.display = 'block';
+        resumenReserva.innerHTML = `
+            <h3>Reserva confirmada</h3>
+            <p><strong>Nombre:</strong> ${nuevaReserva.nombre}</p>
+            <p><strong>Fecha:</strong> ${nuevaReserva.fecha}</p>
+            <p><strong>Hora:</strong> ${nuevaReserva.hora}</p>
+            <p><strong>Personas:</strong> ${nuevaReserva.personas} (${nuevaReserva.zona})</p>
+            <button id="btn-nueva-reserva" class="btn-ordenar" style="margin-top: 15px;">Hacer otra reserva</button>
+        `;
+
+        document.getElementById('btn-nueva-reserva').addEventListener('click', () => {
+            formReserva.reset();
+            inputs.forEach(input => input.classList.remove('campo-valido', 'campo-invalido'));
+            resumenReserva.style.display = 'none';
+            formReserva.style.display = 'block';
+        });
+    });
+}
