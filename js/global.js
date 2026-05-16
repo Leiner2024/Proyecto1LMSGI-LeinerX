@@ -76,8 +76,16 @@ const modalGrid = document.getElementById('modal-grid');
 const tarjetasComida = document.querySelectorAll('.comida-item');
 
 tarjetasComida.forEach(tarjeta => {
-    tarjeta.addEventListener('click', function() {
+    tarjeta.addEventListener('click', function(e) {
+        if (e.target.classList.contains('btn-ordenar')) {
+            return;
+        }
+        
         const categoria = this.getAttribute('data-categoria');
+        if (!categoria) {
+            return;
+        }
+
         const nombreCategoria = this.querySelector('h3').innerText;
         const productos = datosMenu[categoria] || [];
 
@@ -91,9 +99,9 @@ tarjetasComida.forEach(tarjeta => {
                 const div = document.createElement('div');
                 div.className = 'producto-item';
                 div.innerHTML = `
-                    <img src="${producto.img}" alt="${producto.nombre}"">
+                    <img src="${producto.img}" alt="${producto.nombre}">
                     <h4>${producto.nombre}</h4>
-                    <p>${producto.precio} €</p>
+                    <p>${producto.precio} EUR</p>
                     <button class="btn-ordenar">Ordenar</button>
                 `;
                 modalGrid.appendChild(div);
@@ -111,6 +119,17 @@ closeModal.addEventListener('click', function() {
 modalMenu.addEventListener('click', function(e) {
     if (e.target === modalMenu) {
         modalMenu.classList.remove('activo');
+    }
+});
+
+// Al hacer click en "Ordenar" se redirige a reservas
+document.addEventListener('click', function(e) {
+    if (e.target && e.target.classList.contains('btn-ordenar')) {
+        alert('Producto seleccionado. Redirigiendo a la seccion de reservas.');
+        const vistaReservas = document.querySelector('.nav-link[data-target="reservas"]');
+        if (vistaReservas) {
+            vistaReservas.click();
+        }
     }
 });
 
@@ -143,6 +162,7 @@ linksNavegacion.forEach(link => {
         checkbox.checked = false
     })
 })
+
 // Local Storage de info del restaurante
 const infoRestaurante = {
     diasCerrado: [1],
